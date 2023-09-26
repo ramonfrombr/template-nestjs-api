@@ -1,0 +1,16 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts", "png"],
+  "rootDir": "../",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": ["<rootDir>/src/**/*.(t)s"],
+  "coverageDirectory": "<rootDir>/coverage",
+  "testEnvironment": "node",
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^Tests/(.*)$": "<rootDir>/test/$1"
+  },
+  "testTimeout": 20000
+}
