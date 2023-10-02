@@ -3,11 +3,19 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { ApiKeyGuard } from './infrastructure/api-key.guard';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: '*',
+    },
+  });
+  const microservice = app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.TCP,
+    options: {
+      host: '0.0.0.0',
+      port: parseInt(process.env.SERVER_TCP_PORT, 10),
     },
   });
   const config = new DocumentBuilder()
@@ -26,6 +34,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   app.use(helmet());
-  await app.listen(process.env.SERVER_PORT);
+  Promise.all([
+    app.startAllMicroservices(),
+    app.listen(process.env.SERVER_PORT),
+  ]);
 }
 bootstrap();

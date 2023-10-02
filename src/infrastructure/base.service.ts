@@ -5,11 +5,15 @@ export abstract class BaseService<I, O> {
 
   constructor(private readonly name: string) {}
 
-  async execute(input: I, output?: O): Promise<void> {
-    this.logger.debug(`func=execute input=${JSON.stringify(input)}`);
-    await this.perform(input, output);
-    this.logger.debug(`func=execute output=${JSON.stringify(output ?? {})}`);
+  async execute(input: I): Promise<O> {
+    const output = await this.perform(input);
+    this.logger.debug(
+      `func=execute input=${JSON.stringify(input)} output=${JSON.stringify(
+        output,
+      )}`,
+    );
+    return output;
   }
 
-  protected abstract perform(input: I, output?: O): Promise<void>;
+  protected abstract perform(input: I): Promise<O>;
 }
