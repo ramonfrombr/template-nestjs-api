@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { HttpExceptionFilter } from '@/infrastructure/http-exception.filter';
+import { Controller, Get, UseFilters } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   HealthCheck,
   HealthCheckResult,
@@ -7,6 +9,7 @@ import {
 } from '@nestjs/terminus';
 
 @Controller('health')
+@ApiTags('HealthCheck')
 export class HealthCheckController {
   constructor(
     private readonly health: HealthCheckService,
@@ -15,6 +18,7 @@ export class HealthCheckController {
 
   @Get('check')
   @HealthCheck()
+  @UseFilters(new HttpExceptionFilter())
   check(): Promise<HealthCheckResult> {
     return this.health.check([
       async () => await this.db.pingCheck('database', { timeout: 2000 }),

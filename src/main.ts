@@ -11,10 +11,9 @@ async function bootstrap() {
       origin: '*',
     },
   });
-  const microservice = app.connectMicroservice<MicroserviceOptions>({
+  app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.TCP,
     options: {
-      host: '0.0.0.0',
       port: parseInt(process.env.SERVER_TCP_PORT, 10),
     },
   });
@@ -32,11 +31,11 @@ async function bootstrap() {
     )
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
   app.use(helmet());
-  Promise.all([
+  await Promise.all([
     app.startAllMicroservices(),
-    app.listen(process.env.SERVER_PORT),
+    app.listen(process.env.SERVER_HTTP_PORT),
   ]);
 }
 bootstrap();

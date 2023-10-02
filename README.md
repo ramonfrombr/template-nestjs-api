@@ -64,11 +64,22 @@ yarn start
 ## Executando os testes
 
 ```commandLine
-NODE_ENV=test yarn test
+yarn test
+```
+
+## Lançamento de erros
+
+```
+throw new RpcException(new UnprocessableEntityException('Deu problema'));
 ```
 
 ## Libs
 
-NestJS 10.x.x
-Postgres 15.x
-Typeorm 0.13.x
+- NestJS 10.x.x
+- Postgres 15.x
+- Typeorm 0.13.x
+- KafkaJS 2.x.x
+- Hemlt 7.x.x
+- Jest 29.x.x
+- Supertest 6.x.x
+- testcontainers 10.x.x

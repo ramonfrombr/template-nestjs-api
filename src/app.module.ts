@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthCheckModule } from './health-check/health-check.module';
-import { ExceptionHandler } from './infrastructure/exception.handler';
+import { HttpExceptionFilter } from './infrastructure/http-exception.filter';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
@@ -51,11 +51,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     HealthCheckModule,
   ],
   controllers: [],
-  providers: [
-    {
-      provide: APP_FILTER,
-      useClass: ExceptionHandler,
-    },
-  ],
+  providers: [],
 })
 export class AppModule {}
