@@ -5,7 +5,7 @@ import {
   ERRO_422_API_RESPONSE,
   ERRO_500_API_RESPONSE,
 } from './api-doc';
-import { ApiKeyGuard } from './api-key.guard';
+import { ApiKeyGuard } from '../guards/api-key.guard';
 
 @ApiResponse(ERRO_401_API_RESPONSE)
 @ApiResponse(ERRO_422_API_RESPONSE)

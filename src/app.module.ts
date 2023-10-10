@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_FILTER } from '@nestjs/core';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthCheckModule } from './health-check/health-check.module';
-import { HttpExceptionFilter } from './infrastructure/http-exception.filter';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [

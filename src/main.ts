@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
-import { ApiKeyGuard } from './infrastructure/api-key.guard';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { ApiKeyGuard } from './infrastructure/guards/api-key.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -15,6 +15,17 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       port: parseInt(process.env.SERVER_TCP_PORT, 10),
+    },
+  });
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.KAFKA,
+    options: {
+      client: {
+        brokers: [process.env.KAFKA_BROKERS],
+      },
+      run: {
+        autoCommit: false,
+      },
     },
   });
   const config = new DocumentBuilder()

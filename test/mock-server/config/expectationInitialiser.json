@@ -1,0 +1,78 @@
+[
+  {
+    "httpRequest": {
+      "path": "/",
+      "queryStringParameters": {
+        "lib": "drytelecom",
+        "endPoint": "consultasocio"
+      },
+      "method": "POST",
+      "body": {
+        "idConsumidor": "91077571313",
+        "mvnoDomain": "tricolor"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "sucesso": "",
+        "errorId": "",
+        "errorMessage": "",
+        "api": {
+          "retorno": ""
+        },
+        "dadosConsumidor": {
+          "nome": "Thomas Diego Vinicius Farias",
+          "socioStatus": 1
+        }
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "path": "/",
+      "queryStringParameters": {
+        "lib": "drytelecom",
+        "endPoint": "consultasocio"
+      },
+      "method": "POST",
+      "body": {
+        "idConsumidor": "69599656750",
+        "mvnoDomain": "botafogo"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "sucesso": "",
+        "errorId": "",
+        "errorMessage": "",
+        "api": {
+          "retorno": ""
+        },
+        "dadosConsumidor": {
+          "nome": "",
+          "socioStatus": ""
+        }
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "path": "/",
+      "queryStringParameters": {
+        "lib": "drytelecom",
+        "endPoint": "consultasocio"
+      },
+      "method": "POST",
+      "body": {
+        "idConsumidor": "13068444101",
+        "mvnoDomain": "palmeiras"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 500,
+      "body": {}
+    }
+  }
+]

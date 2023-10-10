@@ -1,4 +1,4 @@
-import { HttpExceptionFilter } from '@/infrastructure/http-exception.filter';
+import { HttpExceptionFilter } from '@/infrastructure/filters/http-exception.filter';
 import { Controller, Get, UseFilters } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import {

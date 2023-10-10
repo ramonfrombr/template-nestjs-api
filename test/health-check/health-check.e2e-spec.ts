@@ -1,6 +1,7 @@
+import { AppModule } from '@/app.module';
 import { HttpStatus, INestApplication } from '@nestjs/common';
-import { TestingModule } from '@nestjs/testing';
-import { startContainer, stopContainer, appModuleBuilder } from 'Tests/utils';
+import { Test, TestingModule } from '@nestjs/testing';
+import { startContainer, stopContainer } from 'Tests/utils';
 import * as request from 'supertest';
 
 describe('Health check', () => {
@@ -8,7 +9,9 @@ describe('Health check', () => {
 
   beforeAll(async () => {
     await startContainer();
-    const moduleRef: TestingModule = await appModuleBuilder().compile();
+    const moduleRef: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
   });

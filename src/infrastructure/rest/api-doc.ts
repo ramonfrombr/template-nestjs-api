@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { ApiResponseOptions } from '@nestjs/swagger';
-import { ErrorResponse } from './exception.model';
+import { ErrorResponse } from '../model/exception.model';
 
 export const ERRO_422_API_RESPONSE: ApiResponseOptions = {
   type: ErrorResponse,

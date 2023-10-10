@@ -1,0 +1,30 @@
+services:
+  database:
+    extends:
+      file: docker-compose.yml
+      service: database
+    container_name: database_test
+    volumes:
+      - test_database_vm:/var/lib/postgresql/data
+  zookeeper:
+    extends:
+      file: docker-compose.yml
+      service: zookeeper
+    container_name: zookeeper_test
+  kafka:
+    extends:
+      file: docker-compose.yml
+      service: kafka
+    container_name: kafka_test
+  mockserver:
+    image: mockserver/mockserver:mockserver-5.15.0
+    container_name: mockserver_test
+    ports:
+      - 1080:1080
+    environment:
+      MOCKSERVER_LOG_LEVEL: DEBUG
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/expectationInitialiser.json
+    volumes:
+      - ./test/mock-server/config:/config
+volumes:
+  test_database_vm:
